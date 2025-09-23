@@ -10,7 +10,9 @@
     </Application.DataTemplates>
   
     <Application.Resources>
-        <local:WeekendBgConverter x:Key="WeekendBgConverter" />
+        <local:HolidayBgConverter x:Key="HolidayBgConverter" />
+    <local:DaysLeftConverter x:Key="DaysLeftConverter" />
+    <local:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
     </Application.Resources>
     <Application.Styles>
         <FluentTheme />

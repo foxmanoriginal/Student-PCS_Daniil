@@ -17,11 +17,12 @@
 
 
     <StackPanel Margin="20">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+	<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
             <Button Content="&lt;" Command="{Binding PrevMonthCommand}" Width="40"/>
             <TextBlock Text="{Binding MonthTitle}" FontSize="20" FontWeight="Bold" Margin="20,0" VerticalAlignment="Center"/>
             <Button Content="&gt;" Command="{Binding NextMonthCommand}" Width="40"/>
         </StackPanel>
+    <TextBlock Text="{Binding WeekendAndHolidayCountText}" HorizontalAlignment="Center" FontSize="14" Foreground="Green" Margin="0,0,0,10"/>
 
         <UniformGrid Columns="7" Rows="1" Margin="0,0,0,5">
             <TextBlock Text="Понедельник" HorizontalAlignment="Center"/>
@@ -29,11 +30,11 @@
             <TextBlock Text="Среда" HorizontalAlignment="Center"/>
             <TextBlock Text="Четверг" HorizontalAlignment="Center"/>
             <TextBlock Text="Пятница" HorizontalAlignment="Center"/>
-            <TextBlock Text="Суббота" HorizontalAlignment="Center" Background="#E0F4FF"/>
-            <TextBlock Text="Воскресенье" HorizontalAlignment="Center" Background="#E0F4FF"/>
+            <TextBlock Text="Суббота" HorizontalAlignment="Center" Background="#4B006E" Foreground="White"/>
+            <TextBlock Text="Воскресенье" HorizontalAlignment="Center" Background="#4B006E" Foreground="White"/>
         </UniformGrid>
 
-        <ItemsControl ItemsSource="{Binding Days}">
+    <ItemsControl x:Name="DaysGrid" ItemsSource="{Binding Days}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="5"/>
@@ -41,12 +42,39 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="2" CornerRadius="4" Background="{Binding IsWeekend, Converter={StaticResource WeekendBgConverter}}">
-                        <TextBlock Text="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Margin="2,6" CornerRadius="4" Background="{Binding Converter={StaticResource HolidayBgConverter}}">
+                        <ToolTip.Tip>
+                            <TextBlock Text="{Binding Day, Converter={StaticResource DaysLeftConverter}}"/>
+                        </ToolTip.Tip>
+                        <StackPanel PointerPressed="DayCell_PointerPressed">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Day}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding DaysLeftText}" Margin="4,0,0,0" FontSize="10" Foreground="Green" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding HolidayName}" HorizontalAlignment="Center" Foreground="White" FontSize="10"/>
+                            <TextBlock Text="{Binding Note}" HorizontalAlignment="Center" Foreground="#FFD700" FontSize="10" TextWrapping="Wrap" IsVisible="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}"/>
+                            <TextBlock Text="📝" HorizontalAlignment="Center" FontSize="12" IsVisible="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}"/>
+                        </StackPanel>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <!-- Help panel -->
+        <Border x:Name="HelpPanel" Background="#222" CornerRadius="8" BorderBrush="#90EE90" BorderThickness="1" Margin="0,20,0,0" Padding="16" IsVisible="{Binding IsHelpVisible, Mode=TwoWay}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="✖" Width="24" Height="24" Background="Transparent" BorderBrush="Transparent" Foreground="Red" Command="{Binding HideHelpCommand}"/>
+                </StackPanel>
+                <TextBlock Text="Справка по использованию календаря:" FontWeight="Bold" FontSize="16" Margin="0,0,0,8" Foreground="White"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White">
+                    - Клик по дню открывает заметку для этого дня.
+                    - Выходные и праздники выделены цветом, название праздника подписано.
+                    - Справа от числа отображается, сколько дней осталось до этой даты (до 365, если больше — 365+).
+                    - Сверху отображается количество выходных и праздничных дней в месяце.
+                </TextBlock>
+            </StackPanel>
+        </Border>
     </StackPanel>
+    
 
 </Window>
