@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+
+# JetBrains Rider / VS Code
+.idea/
+.vscode/
+
+# Visual Studio
+*.user
+*.suo
+*.sln.docstates
+*.userosscache
+
+# Build outputs
+**/bin/
+**/obj/
+
+# .NET artifacts
+*.pdb
+*.cache
+*.mdb
+*.log
+*.ilk
+*.obj
+*.exe
+*.dll
+*.app
+*.nupkg
+*.snupkg
+*.deps.json
+*.runtimeconfig.json
+
+# NuGet
+packages/
+
+

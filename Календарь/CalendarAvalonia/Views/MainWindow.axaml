@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CalendarAvalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CalendarAvalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CalendarAvalonia">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+    <StackPanel Margin="20">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="&lt;" Command="{Binding PrevMonthCommand}" Width="40"/>
+            <TextBlock Text="{Binding MonthTitle}" FontSize="20" FontWeight="Bold" Margin="20,0" VerticalAlignment="Center"/>
+            <Button Content="&gt;" Command="{Binding NextMonthCommand}" Width="40"/>
+        </StackPanel>
+
+        <UniformGrid Columns="7" Rows="1" Margin="0,0,0,5">
+            <TextBlock Text="Понедельник" HorizontalAlignment="Center"/>
+            <TextBlock Text="Вторник" HorizontalAlignment="Center"/>
+            <TextBlock Text="Среда" HorizontalAlignment="Center"/>
+            <TextBlock Text="Четверг" HorizontalAlignment="Center"/>
+            <TextBlock Text="Пятница" HorizontalAlignment="Center"/>
+            <TextBlock Text="Суббота" HorizontalAlignment="Center" Background="#E0F4FF"/>
+            <TextBlock Text="Воскресенье" HorizontalAlignment="Center" Background="#E0F4FF"/>
+        </UniformGrid>
+
+        <ItemsControl ItemsSource="{Binding Days}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7" Rows="5"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="2" CornerRadius="4" Background="{Binding IsWeekend, Converter={StaticResource WeekendBgConverter}}">
+                        <TextBlock Text="{Binding Day}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+
+</Window>
