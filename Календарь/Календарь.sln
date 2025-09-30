@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Календарь", "Календарь.csproj", "{9154EB8B-9F2E-F3B7-2C08-E0E73A8D185A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarAvalonia", "CalendarAvalonia\CalendarAvalonia.csproj", "{74B14891-3281-49E0-87E4-0508E5221925}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9154EB8B-9F2E-F3B7-2C08-E0E73A8D185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9154EB8B-9F2E-F3B7-2C08-E0E73A8D185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9154EB8B-9F2E-F3B7-2C08-E0E73A8D185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9154EB8B-9F2E-F3B7-2C08-E0E73A8D185A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B14891-3281-49E0-87E4-0508E5221925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B14891-3281-49E0-87E4-0508E5221925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B14891-3281-49E0-87E4-0508E5221925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B14891-3281-49E0-87E4-0508E5221925}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {186389F3-E918-4BDB-B6C9-3FD1A33D8F17}
+	EndGlobalSection
+EndGlobal
